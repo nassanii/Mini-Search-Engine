@@ -1,0 +1,23 @@
+From: "Kirtland H. Olson" <mydual!olson@transfer.stratus.com>
+Message-Id: <9304051824.AA18009@mydual.UUCP>
+To: drice@ponder
+Subject: Re: Drive/Controller Compatibility
+Newsgroups: comp.sys.ibm.pc.hardware
+In-Reply-To: <drice.733866833@ponder>
+Organization: The Harvard Group, 01451-0667
+Reply-To: necis!olson%mydual.uucp@transfer.stratus.com
+Cc: 
+Status: OR
+
+Suggest you move jumper on drive rightward one position.
+
+Regards,
+
+      --Kirt
+
+-- 
+Kirtland H Olson Harvard MA 01451-0667 USA olson%mydual.uucp@necis.ma.nec.com
+
+
+Newsgroup: comp.sys.ibm.pc.hardware
+document_id: 58902

@@ -1,0 +1,2 @@
+From: Newsgroup: comp.os.ms-windows.misc
+document_id: 10000

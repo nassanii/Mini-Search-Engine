@@ -1,0 +1,17 @@
+From: srgxnbs@grace.cri.nz
+
+From:	MX%"Andy.Macrae@Corp.Sun.COM"  6-APR-1993 06:48:34.96
+To:	SRGXNBS
+CC:	
+Subj:	Re: I^2C bus and long haul serial (also Axlo
+
+Return-Path: <Andy.Macrae@Corp.Sun.COM>
+Received: from Sun.COM by GRV.GRACE.CRI.NZ (MX V3.1C) with SMTP; Tue, 06 Apr
+          1993 06:48:29 +1300
+Received: from Corp.Sun.COM (lemay.Corp.Sun.COM) by Sun.COM (4.1/SMI-4.1) id
+          AA24280; Mon, 5 Apr 93 11:48:08 PDT
+Received: from grendal.Corp.Sun.COM by Corp.Sun.COM (4.1/elliemay (corpmail1
+          inbound)) id AA25933; Mon, 5 Apr 93 11:48:07 PDT
+Received: by grendal.Corp.Sun.COM (4.1/SMI-4.1) id AA05710; Mon, 5 Apr 93
+          11:47:28 PDT
+Date: Mon, 5 Apr 93 11:47:28 PDT

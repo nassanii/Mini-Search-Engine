@@ -1,0 +1,120 @@
+From: ravalent@mailbox.syr.edu (Bob Valentine)
+Received: from mothra.syr.EDU by mailbox.syr.edu (4.1/CNS)
+	id AA16647; Sat, 3 Apr 93 17:44:49 EST
+Received: by mothra.syr.EDU (4.1/Spike-2.0)
+	id AA03607; Sat, 3 Apr 93 17:43:27 EST
+Date: Sat, 3 Apr 93 17:43:27 EST
+Message-Id: <9304032243.AA03607@mothra.syr.EDU>
+To: drice@ponder
+Status: OR
+
+To: drice@ponder.csci.unt.edu
+Subject: Re: Drive/Controller Compatibility
+Newsgroups: comp.sys.ibm.pc.hardware
+In-Reply-To: <drice.733866833@ponder>
+Organization: Syracuse University, Syracuse, NY
+Cc: 
+
+In article <drice.733866833@ponder> you write:
+>I recently bought a used Seagate ST-251 hard drive.  The guy told me that
+>it had been fully tested and that it was good.  I took it home to install
+>in my Compaq Portable (OK, I'm a little behind in technology).  I already
+>had an MFM controller.
+>
+>I installed the drive and powered up the system.  I got a post error, "1701".
+>
+>My controller is a Western Digital WD1002S-WX2 Rev. C.
+>As I said above, the drive is a Seagate ST-251.
+>The system is a Compaq Portable (circa 1985).
+
+     Ah, finally a question I can answer.   I mess with this older
+stuff alot.   Kinda fun.  8)
+
+     First problem I can forsee is that the ST-251 will not be
+compadible with that WD card unless it has the right bios rom.  
+
+    Check the numbers on it.  It should be the only non-smt chip on
+the board.  Slightly below center, and left.    The bios should read 
+either :     62-000042-015 or
+             62-000094-0x2
+
+     If the last 3 digits are 013, you got problems.
+
+>
+>Controller jumpers are set as follows: ("-" represents jumper)
+>	W1	1-2 3
+>       W2      1-2 3
+>	W3	1-2
+>	W4	1 2-3
+>	W5	1 2 3
+>	W6	1-2 3
+>	W7	1 2 3
+
+    Looks right.   W5 and W7 are factory jumped (with a trace) between
+pins 1 and 2 to select the primary controller address.
+
+>The drive jumpers are as follows: ("8" represents jumper)
+
+    Looks right.
+  
+[art deleted]
+
+>Here are my questions:
+>
+>1.)	Are the drive and controller compatible w/ each other?
+
+      I notice you left out the S1 jumper table settings.   Those are
+what control what drive the controller thinks it has.   If you have
+the 62-000042-015 rom, set it like this:
+
+              5 + +    open
+              6 + +    open             
+              7 + +    open        
+              8 + +    open
+              4 + +    closed
+              3 + +    closed
+              2 + +    open
+              1 + +    open
+
+    Note:   those are how WD runs the numbers on the jumper block.
+Top to bottom.   +'s represent the jumper pins.    Pins 3,4, and 8
+select the first drive setting (drive 0) and pins 1,2 and 7 select the
+second drive (drive 1).   
+
+      If you have the 62-000094 rom, it's a auto-config, and I'll have
+to look up how to do it... I don't have the big book right here.
+
+>2.)	Are the jumpers on the card/drive set correctly?
+
+      See above.  You might have problems if the S1 jumpers are not
+right.   Also,  at the risk of being insulting, make sure the cables
+are on right and good. 8).    On the jumper on the 251, try moving it
+to the opposite side of the drive.    It's one or the other.   
+     The narrow data cable goes to J2.   I've thrown it on J3 a few
+times and banged my head for a day.....
+
+>3.)	Is my system's BIOS in need of an upgrade?
+
+     Dunno.    IBM roms had to be later than 10/27/82.   A quick way
+to check is to boot dos and run debug.   Enter:
+       
+        -d f000:fff5 fffc    (the - is the debug prompt)
+   
+    This will return the rom date, if it's of any use.
+
+>Keith Rice
+
+      If I oversimplified any of the above, I appologize.     It's
+just hard to know what caliber of person I'm talking to. 8).
+
+                     -->   Bob Valentine  <--  
+                  --> ravalent@mailbox.syr.edu <--  
+
+
+
+From chpp@unitrix.utr.ac.za Mon Apr  5 06:33:46 1993
+Received: from unitrix.utr.ac.za by ponder (5.61/1.36)
+	id AA16194; Mon, 5 Apr 93 06:32:59 -0500
+Received: by unitrix.utr.ac.za (Smail3.1.28.1 #1)
+	id m0nfpMA-0001X7C; Mon, 5 Apr 93 13:28 GMT
+Message-Id: <m0nfpMA-0001X7C@unitrix.utr.ac.za>

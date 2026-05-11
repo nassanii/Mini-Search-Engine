@@ -30,7 +30,6 @@ env.bak/
 venv.bak/
 
 # Dataset
-data/
 *.csv
 
 # Streamlit

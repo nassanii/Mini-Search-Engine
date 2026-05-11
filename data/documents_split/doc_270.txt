@@ -1,0 +1,39 @@
+From: drice@ponder.csci.unt.edu (D. Keith Rice)
+Subject: Re: Drive/Controller Compatibility
+
+Thanks to all who responded to my original post.  I got the number for
+Western Digital tech support and determined that I need to upgrade the
+BIOS to the Super BIOS.  It will handle hard drives with up to 16 read/
+write heads and up to 1024 cylinders.  The upgrade is $15, payable by
+check or money order.  Send to:
+
+	Western Digital Corporation
+	Technical Support Group
+	P.O. Box 19665
+	Irvine, CA  92713-9665
+
+The Super BIOS is for any WD XT hard drive controller card in the
+WD1002 series.
+
+The BIOS on my system would only handle up to 20mb drives.
+
+The responses to my request for help follow my .sig.  Warning: It's long.
+
+Keith
+
+--
+_____________________________
+__-----____--___--__-----____	D. Keith Rice
+__--__--___--__--___--__--___	University of North Texas
+__--___--__--_--____--___--__	Department of Computer Science
+__--___--__----_____--__--___	Denton, Texas, USA
+__--___--__--_--____--_--____
+__--__--___--__--___--__--___	drice@ponder.csci.unt.edu
+__-----____--___--__--___--__	drice@cs.unt.edu
+_____________________________
+
+<========================== responses below ==========================>
+
+From ravalent@mailbox.syr.edu Sat Apr  3 16:45:03 1993
+Received: from mailbox.syr.EDU by ponder (5.61/1.36)
+	id AA15218; Sat, 3 Apr 93 16:45:00 -0600
