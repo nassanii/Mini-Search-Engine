@@ -1,0 +1,6 @@
+nltk>=3.8.1
+numpy>=1.26.0
+pandas>=2.1.0
+kagglehub
+streamlit
+pyspellchecker
