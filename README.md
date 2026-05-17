@@ -4,7 +4,7 @@ A modular, clean-code **Mini Search Engine** built in Python to illustrate funda
 
 ---
 
-### 📂 Dataset Information
+###  Dataset Information
 
 > [!NOTE]
 > **Where is the dataset?**
@@ -75,7 +75,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🚀 How to Run the Project
+##  How to Run the Project
 
 The Mini Search Engine can be run in two different modes: a rich, interactive Web UI or a lightweight Command Line Interface (CLI).
 
