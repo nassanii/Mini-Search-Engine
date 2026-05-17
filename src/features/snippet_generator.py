@@ -36,39 +36,52 @@ class SnippetGenerator:
         if not os.path.exists(filepath):
             return ""
 
+        # Safely open and read the raw text of the document
         try:
             with open(filepath, 'r', encoding='utf-8') as f:
                 text = f.read()
         except Exception:
             return ""
 
+        # Split text into original words (preserving formatting for display)
         words = text.split()
+        # Create a lowercase, punctuation-free version for matching logic
         lower_words = [w.lower().strip('.,!?;:()[]"') for w in words]
         
+        # Preprocess the query to ensure we're matching against the same normalized forms
         query_set = set(self.preprocessor.process(" ".join(query_terms)))
         
         best_match_idx = -1
         max_matches_in_window = 0
         
+        # Scan through the document word by word
         for i in range(len(words)):
+            # If we find a word from our query
             if lower_words[i] in query_set:
+                # Define a window (e.g., 15 words before and after the matched word)
                 start_idx = max(0, i - window_size)
                 end_idx = min(len(words), i + window_size + 1)
                 
+                # Check how many query terms exist within this specific window
                 window_words = lower_words[start_idx:end_idx]
                 matches = sum(1 for w in window_words if w in query_set)
                 
+                # If this window has the most query terms so far, save it as the "best" window
                 if matches > max_matches_in_window:
                     max_matches_in_window = matches
                     best_match_idx = i
 
+        # If none of the query terms were found, just return the beginning of the document
         if best_match_idx == -1:
             return " ".join(words[:window_size * 2]) + "..."
             
+        # Extract the best window using the original (unprocessed) words for readability
         start_idx = max(0, best_match_idx - window_size)
         end_idx = min(len(words), best_match_idx + window_size + 1)
         
         snippet = " ".join(words[start_idx:end_idx])
+        
+        # Add ellipses to indicate the snippet is a cut-out
         if start_idx > 0:
             snippet = "..." + snippet
         if end_idx < len(words):

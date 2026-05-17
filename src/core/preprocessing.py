@@ -63,63 +63,43 @@ class TextPreprocessor:
         Returns:
             list[str]: A list of cleaned and lemmatized tokens.
         """
+        # Step 1: Lowercase and split the text into words
         tokens = self._tokenize_and_casefold(text)
+        
+        # Step 2: Filter out punctuation marks and common stop-words
         tokens = self._remove_punctuation_and_stopwords(tokens)
+        
+        # Step 3: Normalize words using either stemming or lemmatization
         if self.method == 'stemming':
             normalized_tokens = self._stem(tokens)
         else:
             normalized_tokens = self._lemmatize(tokens)
+            
         return normalized_tokens
 
     def _tokenize_and_casefold(self, text: str) -> list[str]:
-        """
-        Converts text to lowercase and tokenizes it.
-
-        Args:
-            text (str): The input text.
-
-        Returns:
-            list[str]: A list of lowercase tokens.
-        """
+        # Step 1: Convert text to lowercase and tokenize it
+        print("[Preprocessing] Step 1: Tokenizing and Case Folding...")
         text = text.lower()
         return word_tokenize(text)
 
     def _remove_punctuation_and_stopwords(self, tokens: list[str]) -> list[str]:
-        """
-        Removes punctuation tokens and stop-words from the list of tokens.
-
-        Args:
-            tokens (list[str]): The input tokens.
-
-        Returns:
-            list[str]: Filtered tokens.
-        """
+        # Step 2: Remove punctuation and stop-words
+        print("[Preprocessing] Step 2: Removing Punctuation and Stop-words...")
         filtered_tokens: list[str] = []
+        # Iterate over all tokens and keep only valid words
         for token in tokens:
+            # Check if the token is not a punctuation symbol AND not a stop-word
             if token not in string.punctuation and token not in self.stop_words:
                 filtered_tokens.append(token)
         return filtered_tokens
 
     def _lemmatize(self, tokens: list[str]) -> list[str]:
-        """
-        Lemmatizes the given tokens.
-
-        Args:
-            tokens (list[str]): The input tokens.
-
-        Returns:
-            list[str]: Lemmatized tokens.
-        """
+        # Step 3: Return words to their base form (Lemmatization)
+        print("[Preprocessing] Step 3: Lemmatizing tokens...")
         return [self.lemmatizer.lemmatize(token) for token in tokens]
 
     def _stem(self, tokens: list[str]) -> list[str]:
-        """
-        Stems the given tokens.
-
-        Args:
-            tokens (list[str]): The input tokens.
-
-        Returns:
-            list[str]: Stemmed tokens.
-        """
+        # Step 3: Stem the words (Stemming)
+        print("[Preprocessing] Step 3: Stemming tokens...")
         return [self.stemmer.stem(token) for token in tokens]

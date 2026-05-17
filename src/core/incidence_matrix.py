@@ -3,9 +3,8 @@ Incidence Matrix implementation.
 """
 
 import pandas as pd
-from src.core.base_index import Index
 
-class IncidenceMatrix(Index):
+class IncidenceMatrix:
     """
     Incidence Matrix implementation of an Index using Pandas.
     """
@@ -25,20 +24,21 @@ class IncidenceMatrix(Index):
         """
         self.documents_ids = list(documents.keys())
         
-        # Extract unique vocabulary
+        # Extract the complete unique vocabulary across all documents
         vocab = set()
         for terms in documents.values():
             vocab.update(terms)
             
         vocab_list = list(vocab)
         
-        # Build binary mapping (1 if term exists in doc, 0 otherwise)
+        # Build binary mapping: 1 if term exists in a specific document, 0 otherwise
         matrix_data = {}
         for doc_id, terms in documents.items():
             doc_terms_set = set(terms)
+            # Create a list of 1s and 0s for each word in the global vocabulary
             matrix_data[doc_id] = [1 if term in doc_terms_set else 0 for term in vocab_list]
             
-        # Create Pandas DataFrame: Rows = Terms, Columns = Document IDs
+        # Create Pandas DataFrame where Rows = Vocabulary Terms, and Columns = Document IDs
         self.df = pd.DataFrame(matrix_data, index=vocab_list)
 
     def get_term_vector(self, term: str) -> list[int]:
@@ -66,16 +66,19 @@ class IncidenceMatrix(Index):
         Returns:
             list[str]: Matching document IDs.
         """
+        # Return empty if matrix isn't built or no query terms
         if self.df is None or not query_terms:
             return []
             
+        # If any query term is missing from the entire vocabulary, there's no way it matches (AND logic)
         for term in query_terms:
             if term not in self.df.index:
                 return []
                 
-        # Perform Bitwise AND (all) across all query term vectors
+        # Perform Bitwise AND across all row vectors corresponding to query terms
+        # This yields a single boolean series indicating which documents contain ALL query terms
         result_vector = self.df.loc[query_terms].all(axis=0)
         
-        # Extract document IDs where the result is True
+        # Extract and return the names of document IDs where the result is True
         matching_docs = result_vector[result_vector].index.tolist()
         return matching_docs

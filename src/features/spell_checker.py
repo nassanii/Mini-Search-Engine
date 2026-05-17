@@ -33,10 +33,15 @@ class SpellChecker:
         Returns:
             dict[str, str]: A dictionary mapping misspelled words to their corrections.
         """
+        # Identify words that are not in our vocabulary (potential misspellings)
         misspelled = self.checker.unknown(query_terms)
         corrections = {}
+        
+        # Loop through each misspelled word and find the best suggested correction
         for word in misspelled:
             correction = self.checker.correction(word)
             if correction and correction != word:
+                # Map the original wrong word to its correct version
                 corrections[word] = correction
+                
         return corrections

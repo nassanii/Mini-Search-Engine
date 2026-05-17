@@ -96,7 +96,7 @@ def main() -> None:
     
     # --- Print Data Structures for the Query Terms ---
     print("\n" + "="*60)
-    print(" 🔍 DATA STRUCTURES FOR QUERY TERMS ")
+    print("DATA STRUCTURES FOR QUERY TERMS ")
     print("="*60)
     
     # 1. Incidence Matrix Representation
@@ -138,7 +138,7 @@ def main() -> None:
         print(f"'{term}' -> {sample_pos} ... (total docs: {len(pos_list)})")
 
     print("\n" + "="*60)
-    print(" 🚀 SEARCH ENGINE RESULTS ")
+    print(" SEARCH ENGINE RESULTS ")
     print("="*60)
     
     # 5. Execute searches across all models

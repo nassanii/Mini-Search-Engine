@@ -2,10 +2,9 @@
 Positional Index implementation.
 """
 
-from src.core.base_index import Index
 import fnmatch
 
-class PositionalIndex(Index):
+class PositionalIndex:
     """
     Positional Index implementation for phrase queries.
     """
@@ -53,13 +52,15 @@ class PositionalIndex(Index):
         expanded_query: list[list[str]] = []
         for term in phrase_query:
             if '*' in term or '?' in term:
+                # Find matching tokens in the vocabulary for this wildcard
                 matches = self.get_wildcard_matches(term)
                 if not matches:
-                    return [] # Wildcard matched nothing
+                    return [] # Wildcard matched nothing, so the phrase cannot exist
                 expanded_query.append(matches)
             else:
                 if term not in self.index:
                     return []
+                # Wrap exact term in a list to match wildcard structure
                 expanded_query.append([term])
                 
         # 2. Find common documents that contain at least one variant of each position
@@ -68,6 +69,8 @@ class PositionalIndex(Index):
             docs_for_position = set()
             for variant in variants:
                 docs_for_position.update(self.index[variant].keys())
+                
+            # Intersect document IDs to ensure the document contains all parts of the phrase
             if common_docs is None:
                 common_docs = docs_for_position
             else:
@@ -81,7 +84,7 @@ class PositionalIndex(Index):
         # 3. For each common document, verify if terms are consecutive
         for doc_id in common_docs:
             # We need to find if there is ANY valid phrase sequence in this doc.
-            # Get positions for the first term variants
+            # Get all starting positions for the first term in the phrase
             first_term_positions = []
             for variant in expanded_query[0]:
                 if doc_id in self.index[variant]:
@@ -90,9 +93,10 @@ class PositionalIndex(Index):
             for pos in first_term_positions:
                 is_phrase_match = True
                 
+                # Check consecutive positions for the remaining terms in the phrase
                 for offset, variants in enumerate(expanded_query[1:], start=1):
                     expected_pos = pos + offset
-                    # Check if ANY of the variants exist at the expected_pos
+                    # Check if ANY of the allowed variants for this position exists at `expected_pos`
                     found_variant_at_pos = False
                     for variant in variants:
                         if doc_id in self.index[variant] and expected_pos in self.index[variant][doc_id]:
@@ -105,7 +109,7 @@ class PositionalIndex(Index):
                         
                 if is_phrase_match:
                     matching_docs.append(doc_id)
-                    break  # Phrase found in this doc, no need to check further positions
+                    break  # Phrase found in this doc, no need to check further starting positions
                     
         return matching_docs
 

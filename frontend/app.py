@@ -100,7 +100,7 @@ st.sidebar.success(f"Indices built successfully for {engine['num_docs']} documen
 
 # --- 4. Search UI ---
 st.divider()
-query = st.text_input("Enter your search query (supports wildcards like *):", placeholder="e.g. machine learning", value="")
+query = st.text_input("Enter your search query (supports wildcards like *):", placeholder="e.g. machine_learning", value="")
 
 if st.button("Search", type="primary") or query:
     if not query.strip():
