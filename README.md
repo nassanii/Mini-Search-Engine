@@ -36,7 +36,7 @@ This project is organized cleanly into core Information Retrieval structures and
 
 ---
 
-## 💻 Installation & Setup
+##  Installation & Setup
 
 Follow these simple steps to set up and run the project on your machine:
 
@@ -79,7 +79,7 @@ pip install -r requirements.txt
 
 The Mini Search Engine can be run in two different modes: a rich, interactive Web UI or a lightweight Command Line Interface (CLI).
 
-### 🖥️ Option A: The Streamlit Web Interface (Recommended)
+###  Option A: The Streamlit Web Interface (Recommended)
 This is a gorgeous, fully interactive web application where you can enter search queries, toggle query expansion, choose preprocessing methods (stemming vs. lemmatization), and view real-time data structures.
 
 To start the server, run:
@@ -92,7 +92,7 @@ streamlit run frontend/app.py
 
 ---
 
-### 🐚 Option B: The CLI (Command Line Interface)
+###  Option B: The CLI (Command Line Interface)
 You can query the search engine directly from the command line:
 
 ```bash
@@ -105,7 +105,7 @@ python main.py "computer graphics" --dir data/documents_split
 
 ---
 
-## 🧪 Running Unit Tests
+##  Running Unit Tests
 
 A comprehensive suite of unit tests is included to verify the index and preprocessor logic. To run the tests, execute:
 
@@ -115,7 +115,7 @@ python -m unittest discover tests
 
 ---
 
-## 🗂️ Project Directory Structure
+##  Project Directory Structure
 
 ```text
 ├── data/
